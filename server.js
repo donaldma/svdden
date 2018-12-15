@@ -22,7 +22,7 @@ const Helpers = require('./utils/Helpers')
  */
 cron.schedule('*/15 * * * *', () => {
   console.log('Ping App')
-  axios.get('')
+  axios.get('https://www.google.com/')
 })
 /**
  * END CRON JOBS
