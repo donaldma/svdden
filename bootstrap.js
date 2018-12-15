@@ -5,7 +5,7 @@ if (!shell.which('git')) {
   shell.exit(1)
 }
 
-// shell.cp('-R', './.env.example', './.env')
+shell.cp('-R', './.env.example', './.env')
 shell.rm('-rf', '.git')
 shell.exec('git init')
 shell.exec('npm i -g knex')
