@@ -6,8 +6,8 @@ if (!shell.which('git')) {
 }
 
 shell.cp('-R', './.env.example', './.env')
-// shell.rm('-rf', '.git')
-// shell.exec('git init')
+shell.rm('-rf', '.git')
+shell.exec('git init')
 shell.exec('npm i -g knex')
 shell.cd('./client')
 shell.exec('npm install')
