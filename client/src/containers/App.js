@@ -5,10 +5,12 @@ import { postActivity } from '../actions'
 import Home from '../components/Home'
 import ToastWrapper from '../components/ToastWrapper'
 import ScrollToTop from '../components/ScrollToTop'
+import Axios from 'axios'
 
 class App extends Component {
   componentDidMount() {
     this.props.postActivity()
+    Axios.get('/api/test')
   }
 
   render() {

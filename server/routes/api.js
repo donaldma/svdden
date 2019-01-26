@@ -13,5 +13,13 @@ module.exports = (dbHelper) => {
     }
   })
 
+  router.get('/test', async (req, res, next) => {
+    try {
+      res.json({ message: 'It Works' })
+    } catch (err) {
+      next(err)
+    }
+  })
+
   return router
 }
