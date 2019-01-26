@@ -10,11 +10,11 @@ const bodyParser = require('body-parser')
 const axios = require('axios')
 const cron = require('node-cron')
 const knexLogger = require('knex-logger')
-const knexConfig = require('./server/knexfile')
+const knexConfig = require('./knexfile')
 const knex = require('knex')(knexConfig[ENV])
-const dbHelper = require('./server/db/dbHelper')(knex)
-const apiRoutes = require('./server/routes/api')
-const Helpers = require('./server/utils/Helpers')
+const dbHelper = require('./db/dbHelper')(knex)
+const apiRoutes = require('./routes/api')
+const Helpers = require('./utils/Helpers')
 
 /**
  * START CRON JOBS

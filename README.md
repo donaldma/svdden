@@ -19,5 +19,5 @@ Feel free to change the app name in client/package.json[name]
 
 ### Start Coding!
 ```
-npm run app
+npm start
 ```
