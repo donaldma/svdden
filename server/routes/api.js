@@ -4,18 +4,18 @@ const express = require('express')
 const router = express.Router()
 
 module.exports = (dbHelper) => {
-  router.post('/activity', async (req, res, next) => {
+  router.get('/ping', async (req, res, next) => {
     try {
-      const response = await dbHelper.addActivity(req.connection.remoteAddress)
-      res.json(response[0])
+      res.json({ status: 200 })
     } catch (err) {
       next(err)
     }
   })
 
-  router.get('/test', async (req, res, next) => {
+  router.post('/activity', async (req, res, next) => {
     try {
-      res.json({ message: 'It Works' })
+      const response = await dbHelper.addActivity(req.connection.remoteAddress)
+      res.json(response[0])
     } catch (err) {
       next(err)
     }
