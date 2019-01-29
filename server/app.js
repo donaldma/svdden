@@ -1,5 +1,5 @@
-const ENV = process.env.NODE_ENV || 'development'
-const PORT = process.env.PORT || 3001
+require('dotenv').config({ silent: true })
+const PORT = process.env.PORT
 const express = require('express')
 const path = require('path')
 const app = express()
@@ -10,9 +10,7 @@ const bodyParser = require('body-parser')
 const axios = require('axios')
 const cron = require('node-cron')
 const knexLogger = require('knex-logger')
-const knexConfig = require('./knexfile')
-const knex = require('knex')(knexConfig[ENV])
-const dbHelper = require('./db/dbHelper')(knex)
+const db = require('./database/db')
 const apiRoutes = require('./routes/api')
 const Helpers = require('./utils/Helpers')
 
@@ -29,11 +27,11 @@ cron.schedule('*/15 * * * *', () => {
  */
 
 app.use(cors())
-app.use(knexLogger(knex))
+app.use(knexLogger(db.knex))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use('/api', apiRoutes(dbHelper))
+app.use('/api', apiRoutes)
 
 app.use(function(err, req, res, next) {
   console.error(err)

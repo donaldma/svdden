@@ -1,6 +1,7 @@
 require('dotenv').config({ silent: true })
+const ENV = process.env.NODE_ENV
 
-module.exports = {
+const knexConfig = {
   development: {
     client: 'postgresql',
     connection: {
@@ -10,14 +11,13 @@ module.exports = {
       user: process.env.DB_USER
     },
     migrations: {
-      directory: './db/migrations',
+      directory: './database/migrations',
       tableName: 'migrations'
     },
     seeds: {
-      directory: './db/seeds'
+      directory: './database/seeds'
     }
   },
-
   production: {
     client: 'postgresql',
     connection: process.env.DATABASE_URL + '?ssl=true',
@@ -26,11 +26,13 @@ module.exports = {
       max: 20
     },
     migrations: {
-      directory: './db/migrations',
+      directory: './database/migrations',
       tableName: 'migrations'
     },
     seeds: {
-      directory: './db/seeds'
+      directory: './database/seeds'
     }
   }
 }
+
+module.exports = knexConfig[ENV]
